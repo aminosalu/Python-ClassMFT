@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}weather information{% endblock title %}
+
+{% block content %}
+    <form action="" method="post">
+        <label for="city">city name:</label>
+        <input type="text" name="city" required><br><br>
+        <input type="submit" value="send">
+    </form>
+
+    {% if data %}
+        <h2>{{ data.city }}, {{ data.country }} {{ data.icon }}</h2>
+        <p>temperature: {{ data.temp }} °C</p>
+        <p>pressure: {{ data.pressure }} hPa</p>
+        <p>humidity: {{ data.humidity }} %</p>
+        <p>description: {{ data.description }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+{% endblock content %}

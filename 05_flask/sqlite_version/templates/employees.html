@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Employees{% endblock %}
+{% block content %}
+    <h3>Add department</h3>
+    <form method="post" action="/departments/add">
+        name: <input name="name" required> location: <input name="location">
+        <button>Add</button>
+    </form>
+    <h3>Add employee</h3>
+    <form method="post" action="/employees/add">
+        code: <input name="code" required>
+        first: <input name="first" required>
+        last: <input name="last" required>
+        <select name="department_id">
+            {% for d in departments %}<option value="{{ d.id }}">{{ d.name }}</option>{% endfor %}
+        </select>
+        <button>Add</button>
+    </form>
+    <h3>List</h3>
+    <table>
+        <tr><th>Code</th><th>Name</th><th>Department</th></tr>
+        {% for e in employees %}
+        <tr><td><a href="/report?code={{ e.personnel_code }}">{{ e.personnel_code }}</a></td>
+            <td>{{ e.first_name }} {{ e.last_name }}</td><td>{{ e.department }}</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

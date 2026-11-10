@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    <h3>Check in / out</h3>
+    <form method="post" action="/checkin">
+        code: <input name="code" required> note: <input name="note">
+        <button>Check in</button>
+    </form><br>
+    <form method="post" action="/checkout">
+        code: <input name="code" required> <button>Check out</button>
+    </form>
+    <h3>Currently inside</h3>
+    <table>
+        <tr><th>Name</th><th>Since</th></tr>
+        {% for r in inside %}
+        <tr><td>{{ r.first_name }} {{ r.last_name }}</td><td>{{ r.check_in }}</td></tr>
+        {% else %}<tr><td colspan="2">nobody</td></tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Report{% endblock %}
+{% block content %}
+    <form method="get">code: <input name="code" value="{{ code }}"> <button>Show</button></form>
+    {% if rows is not none %}
+    <table>
+        <tr><th>Check in</th><th>Check out</th><th>Hours</th></tr>
+        {% for r in rows %}
+        <tr><td>{{ r.check_in }}</td><td>{{ r.check_out or '-' }}</td><td>{{ r.hours if r.hours is not none else '-' }}</td></tr>
+        {% else %}<tr><td colspan="3">no records</td></tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+{% endblock %}
